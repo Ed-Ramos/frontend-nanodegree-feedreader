@@ -74,18 +74,32 @@ $(function() {
          * hiding/showing of the menu element.
          */
 
+         it('menu is hidden', function() {
+
+           expect($('body').hasClass("menu-hidden")).toBe(true);
+
+         });
+
          /* TODO: Write a test that ensures the menu changes
           * visibility when the menu icon is clicked. This test
           * should have two expectations: does the menu display when
           * clicked and does it hide when clicked again.
           */
 
+         it('menu icon clicked, menu changes', function() {
+
+            $('.menu-icon-link').trigger('click');
+          expect($('body').hasClass("menu-hidden")).toBe(false);
+
+         });
 
     });
 
 
 
     /* TODO: Write a new test suite named "Initial Entries" */
+
+    describe('Initial Entries', function() {
 
         /* TODO: Write a test that ensures when the loadFeed
          * function is called and completes its work, there is at least
@@ -94,10 +108,32 @@ $(function() {
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
 
-    /* TODO: Write a new test suite named "New Feed Selection"
+         beforeEach(function(done) {
+         loadFeed(0,done);
+
+         }); //close before each
+
+          it('entries exist', function(done) {
+          expect($('.feed').children().length).toBeGreaterThan(0);
+          done();
+
+         }); //close entries exist
+
+        }); //close Initial Entries
+
+
+    /* TODO: Write a new test suite named "New Feed Selection" */
+
+    describe('New Feed Selection', function() {
 
         /* TODO: Write a test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
-         */
+        */
+
+
+
+
+    }); //close new feed selection
+
 }());
