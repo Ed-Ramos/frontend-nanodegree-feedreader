@@ -131,7 +131,18 @@ $(function() {
          * Remember, loadFeed() is asynchronous.
         */
 
+         var feedList;
 
+         beforeEach(function(done) {
+         loadFeed(0, done);
+         feedList = $('.feed').html();
+         }); //close beforeEach
+
+         it('Feed list content changes', function(done) {
+         loadFeed(1);
+         expect($('.feed').html()).not.toEqual(feedList);
+         done();
+         }); //close changes the feed
 
 
     }); //close new feed selection
