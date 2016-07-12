@@ -38,9 +38,7 @@ $(function() {
              expect(allFeeds[i].url).toBeDefined();
              expect(allFeeds[i].url.length).not.toBe(0);
 
-             console.log(allFeeds[i].url.length);
-
-         }
+           }
 
          });
 
@@ -95,8 +93,6 @@ $(function() {
 
     });
 
-
-
     /* TODO: Write a new test suite named "Initial Entries" */
 
     describe('Initial Entries', function() {
@@ -143,7 +139,6 @@ $(function() {
          expect($('.feed').html()).not.toEqual(feedList);
          done();
          }); //close changes the feed
-
 
     }); //close new feed selection
 
