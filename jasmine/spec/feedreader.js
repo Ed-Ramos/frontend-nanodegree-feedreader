@@ -33,9 +33,7 @@ $(function() {
          */
          it('URL defined and not empty', function() {
 
-         //for (i = 0; i<allFeeds.length; i++) {
-
-            allFeeds.forEach(function(feed) {
+           allFeeds.forEach(function(feed) {
              expect(feed.url).toBeTruthy();
              expect(feed.url.length).not.toBe(0);
 
@@ -50,16 +48,13 @@ $(function() {
 
          it('name defined and not empty', function() {
 
-         for (i = 0; i<allFeeds.length; i++) {
+           allFeeds.forEach(function(feed) {
+             expect(feed.name).toBeTruthy();
+             expect(feed.name.length).not.toBe(0);
 
-             expect(allFeeds[i].name).toBeDefined();
-             expect(allFeeds[i].name.length).not.toBe(0);
+          }); //close for each
 
-             console.log(allFeeds[i].name.length);
-
-         }
-
-         });
+         }); // close name defined and not empty
 
     });
 
@@ -138,18 +133,15 @@ $(function() {
              feedListB;
 
          beforeEach(function(done) {
-         loadFeed(0, function() {
-         feedListA = $('.feed').html();
-         console.log(feedListA);
-         }); //close loadfeed
+           loadFeed(0, function() {
+             feedListA = $('.feed').html();
+             loadFeed(1, function() {
+               feedListB = $('.feed').html();
+               done();
+             }); //close loadfeed1
+           }); //close loadfeed0
 
-         loadFeed(1, function() {
-         feedListB = $('.feed').html();
-         done();
-         console.log(feedListB);
-         }); //close loadfeed
-
-         }); //close beforeEach
+          }); //close beforeEach
 
          it('Feed list content changes', function() {
           expect(feedListA).not.toBe(feedListB);
