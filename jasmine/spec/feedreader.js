@@ -89,6 +89,11 @@ $(function() {
             $('.menu-icon-link').trigger('click');
           expect($('body').hasClass("menu-hidden")).toBe(false);
 
+            $('.menu-icon-link').trigger('click');
+          expect($('body').hasClass("menu-hidden")).toBe(true);
+
+
+
          });
 
     });
@@ -110,8 +115,9 @@ $(function() {
          }); //close before each
 
           it('entries exist', function(done) {
-          expect($('.feed').children().length).toBeGreaterThan(0);
+          expect($('.feed .entry').length).toBeGreaterThan(0);
           done();
+          console.log($('.feed .entry').length);
 
          }); //close entries exist
 
@@ -127,18 +133,27 @@ $(function() {
          * Remember, loadFeed() is asynchronous.
         */
 
-         var feedList;
+         var feedListA,
+             feedListB;
 
          beforeEach(function(done) {
-         loadFeed(0, done);
-         feedList = $('.feed').html();
+         loadFeed(0, function() {
+         feedListA = $('.feed').html();
+         done();
+         console.log(feedListA);
+         }); //close loadfeed
+
+         loadFeed(1, function() {
+         feedListB = $('.feed').html();
+         done();
+         console.log(feedListB);
+         }); //close loadfeed
+
          }); //close beforeEach
 
-         it('Feed list content changes', function(done) {
-         loadFeed(1);
-         expect($('.feed').html()).not.toEqual(feedList);
-         done();
-         }); //close changes the feed
+         it('Feed list content changes', function() {
+          expect(feedListA).not.toBe(feedListB);
+         }); //close feed list content changes
 
     }); //close new feed selection
 
